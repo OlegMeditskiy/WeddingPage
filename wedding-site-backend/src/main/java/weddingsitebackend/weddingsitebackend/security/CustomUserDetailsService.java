@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import weddingsitebackend.weddingsitebackend.exception.ResourceNotFoundException;
 import weddingsitebackend.weddingsitebackend.models.users.User;
-import weddingsitebackend.weddingsitebackend.repository.UserRepository;
+import weddingsitebackend.weddingsitebackend.repository.user.UserRepository;
 
 
 @Service
