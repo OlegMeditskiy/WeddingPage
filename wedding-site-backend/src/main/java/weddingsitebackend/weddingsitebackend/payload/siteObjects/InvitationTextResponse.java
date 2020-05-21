@@ -1,7 +1,9 @@
 package weddingsitebackend.weddingsitebackend.payload.siteObjects;
 
-import java.util.Date;
+import lombok.Setter;
 
+import java.util.Date;
+@Setter
 public class InvitationTextResponse {
 
     private Long id;
