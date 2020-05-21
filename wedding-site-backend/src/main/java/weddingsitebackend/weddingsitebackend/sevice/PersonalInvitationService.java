@@ -22,4 +22,10 @@ public class PersonalInvitationService {
         personalInvitationRepo.save(personalInvitation);
         return ResponseEntity.ok().body(new ApiResponse(true, "Персональное приглашение было обновлено"));
     }
+    public ResponseEntity<?> create(PersonalInvitationRequest personalInvitationRequest){
+        PersonalInvitation personalInvitation = new PersonalInvitation();
+        personalInvitation.setNames(personalInvitationRequest.getNames());
+        personalInvitationRepo.save(personalInvitation);
+        return ResponseEntity.ok().body(new ApiResponse(true, "Персональное приглашение для "+personalInvitationRequest.getNames()+" было создано"));
+    }
 }
