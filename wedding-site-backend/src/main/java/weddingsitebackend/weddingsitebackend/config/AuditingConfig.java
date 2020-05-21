@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import se.foreningsdialog.forening.security.UserPrincipal;
+import weddingsitebackend.weddingsitebackend.security.UserPrincipal;
 
 import java.util.Optional;
 
