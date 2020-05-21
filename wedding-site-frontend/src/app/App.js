@@ -3,15 +3,11 @@ import './App.css';
 import {Route, Switch, withRouter} from 'react-router-dom';
 import {ACCESS_TOKEN} from '../constants';
 import Login from '../user/login/Login';
-import Signup from '../user/signup/Signup';
-import AppHeader from '../common/AppHeader';
 import NotFound from '../common/NotFound';
 import LoadingIndicator from '../common/LoadingIndicator';
 import Admin from "../roles/Admin";
 import {Layout, notification} from 'antd';
 import PrivateRoute from "../common/PrivateRoute";
-import Profile from "../user/profile/Profile";
-import GuestRegister from "../user/signup/GuestRegister";
 import {getCurrentUser} from "../util/GetAPI";
 
 const {Content} = Layout;
