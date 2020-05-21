@@ -1,12 +1,10 @@
 package weddingsitebackend.weddingsitebackend.sevice;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import weddingsitebackend.weddingsitebackend.models.siteObjects.Story;
 import weddingsitebackend.weddingsitebackend.payload.common.ApiResponse;
 import weddingsitebackend.weddingsitebackend.payload.siteObjects.StoryRequest;
-import weddingsitebackend.weddingsitebackend.repository.siteObjects.DressCodeRepo;
 import weddingsitebackend.weddingsitebackend.repository.siteObjects.StoryRepo;
 
 @Service
