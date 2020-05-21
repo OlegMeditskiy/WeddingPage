@@ -6,5 +6,5 @@ import weddingsitebackend.weddingsitebackend.models.siteObjects.Program;
 
 
 @Repository
-public interface ProgramDetailRepo extends JpaRepository<Program, Long> {
+public interface ProgramRepo extends JpaRepository<Program, Long> {
 }
