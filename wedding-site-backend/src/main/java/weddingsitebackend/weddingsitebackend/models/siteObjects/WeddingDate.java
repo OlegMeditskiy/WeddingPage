@@ -22,5 +22,4 @@ public class WeddingDate {
 
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date weddingDate;
-
 }
