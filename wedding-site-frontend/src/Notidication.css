@@ -1,0 +1,11 @@
+.rpn-notification-card-top.green {
+    background-color: #28a745;
+    color: white;
+    border-bottom: 1px solid white;
+
+}
+.rpn-notification-card-bottom.green {
+    background-color: rgb(40, 167, 69);
+    color: white;
+    box-shadow: 0 5px 0px 0px rgb(40, 167, 69);
+}

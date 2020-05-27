@@ -4,12 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
 @Setter
 @Getter
 @AllArgsConstructor
-public class WeddingDateResponse {
+public class ProgramsPartResponse {
     private Long id;
-
-    private Date weddingDate;
+    private String programsText;
 }

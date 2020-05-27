@@ -5,13 +5,14 @@ import {ACCESS_TOKEN} from '../constants';
 import Login from '../user/login/Login';
 import NotFound from '../common/NotFound';
 import LoadingIndicator from '../common/LoadingIndicator';
-import Admin from "../roles/Admin";
-import {Layout, notification} from 'antd';
+// import {Layout, notification} from 'antd';
 import PrivateRoute from "../common/PrivateRoute";
 import {getCurrentUser} from "../util/GetAPI";
-
-const {Content} = Layout;
-
+import AdminPage from "../AdminPage";
+// const {Content} = Layout;
+import {Notifications} from 'react-push-notification';
+import {Col, Container, Row} from "react-bootstrap";
+import MainPage from "../MainPage";
 
 class App extends Component {
     constructor(props) {
@@ -24,12 +25,11 @@ class App extends Component {
         this.handleLogout = this.handleLogout.bind(this);
         this.loadCurrentUser = this.loadCurrentUser.bind(this);
         this.handleLogin = this.handleLogin.bind(this);
-        // this.loadCurrentUser();
-        notification.config({
-            placement: 'topRight',
-            top: 70,
-            duration: 3,
-        });
+        // notification.config({
+        //     placement: 'topRight',
+        //     top: 70,
+        //     duration: 3,
+        // });
     }
 
     loadCurrentUser() {
@@ -65,18 +65,18 @@ class App extends Component {
 
         this.props.history.push(redirectTo);
 
-        notification[notificationType]({
-            message: 'Förenings App',
-            description: description,
-        });
+        // notification[notificationType]({
+        //     message: 'Förenings App',
+        //     description: description,
+        // });
     }
 
 
     handleLogin() {
-        notification.success({
-            message: 'Förenings App',
-            description: "You're successfully logged in.",
-        });
+        // notification.success({
+        //     message: 'Förenings App',
+        //     description: "You're successfully logged in.",
+        // });
         this.loadCurrentUser();
         this.props.history.push("/");
     }
@@ -85,20 +85,30 @@ class App extends Component {
         if (this.state.isLoading) {
             return <LoadingIndicator/>
         }
+
         return (
-                <Layout className="app-container">
-                    <Content className="app-content">
-                        <div className="container">
+                <div className="app-container">
+                    <div className="app-content">
+                        <Notifications position={"top-right"} />
                             <Switch>
+
                                 <Route path="/login"
                                        render={(props) => <Login onLogin={this.handleLogin} {...props} />}/>
+
+                                <Route exact path="/" component={MainPage}/>
                                 {(this.state.isAuthenticated!==null)?<PrivateRoute authenticated={this.state.isAuthenticated} path="/admin" handleLogout={this.handleLogout}
-                                                                                   currentUser={this.state.currentUser} component={Admin} />:null}
+                                                                                   currentUser={this.state.currentUser} component={AdminPage} />:null}
                                 <Route component={NotFound}/>
                             </Switch>
-                        </div>
-                    </Content>
-                </Layout>
+                    </div>
+                    <div className={"footer"}>
+                            <Container>
+                                <Row className="justify-content-md-center">
+                                    <Col md={"auto"}>Олег лучший ©</Col>
+                                </Row>
+                            </Container>
+                    </div>
+                </div>
             );
 
     }
