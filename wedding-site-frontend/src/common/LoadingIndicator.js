@@ -1,12 +1,9 @@
 import React from 'react';
-import {Spin} from 'antd';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faSpinner} from "@fortawesome/free-solid-svg-icons";
 
 export default function LoadingIndicator() {
-    // const antIcon = <Icon type="loading-3-quarters" style={{ fontSize: 30 }} spin />;
-    // return (
-    //     <Spin indicator={antIcon} style = {{display: 'block', textAlign: 'center', marginTop: 30}} />
-    // );
     return (
-        <Spin/>
+        <div><FontAwesomeIcon icon={faSpinner} spin /></div>
     )
 }

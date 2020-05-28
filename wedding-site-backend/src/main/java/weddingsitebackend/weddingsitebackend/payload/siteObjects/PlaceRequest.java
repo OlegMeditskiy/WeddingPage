@@ -1,7 +1,9 @@
 package weddingsitebackend.weddingsitebackend.payload.siteObjects;
 
-public class PlaceRequest {
+import lombok.Getter;
 
+@Getter
+public class PlaceRequest {
     private Long id;
 
     private String place;

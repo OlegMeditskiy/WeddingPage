@@ -20,4 +20,12 @@ public class AboutUs {
     @Type(type = "org.hibernate.type.TextType")
     private String about;
 
+    @Override
+    public String toString() {
+        return "AboutUs{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", about='" + about + '\'' +
+                '}';
+    }
 }

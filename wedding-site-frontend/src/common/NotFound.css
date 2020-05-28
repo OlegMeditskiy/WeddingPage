@@ -6,18 +6,45 @@
     border: 1px solid #c8c8c8;
     text-align: center;
 }
-
 .page-not-found .title {
     font-size: 50px;
     letter-spacing: 10px;
     margin-bottom: 10px;
 }
-
 .page-not-found .desc {
     font-size: 20px;
     margin-bottom: 20px;
 }
-
 .go-back-btn {
     min-width: 160px;
+}
+
+.errorDiv{
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    background-color: black;
+    color: #ffea57;
+    }
+.error404{
+    font-size: 15vh;
+    font-family: Impact;
+}
+.notFoundText{
+    font-family: Impact;
+    font-size: 6vh;
+}
+.button{
+    border: 3px solid #ffea57!important;
+    color:#ffea57!important;
+}
+.btn.focus, .btn:focus {
+    outline: 0;
+    box-shadow: none!important;
+}
+.button>a{
+    color:#ffea57!important;
+}
+.buttonBlock{
+    margin-top: 20px;
 }

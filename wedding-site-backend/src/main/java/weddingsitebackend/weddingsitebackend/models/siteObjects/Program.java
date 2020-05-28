@@ -1,10 +1,12 @@
 package weddingsitebackend.weddingsitebackend.models.siteObjects;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -14,8 +16,9 @@ public class Program {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Lob
-    @Type(type = "org.hibernate.type.TextType")
-    private String program;
+    @OneToMany(mappedBy = "program",cascade = CascadeType.ALL)
+    @JsonManagedReference
+    List<ProgramsPart> programsParts;
+
 
 }

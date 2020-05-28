@@ -19,60 +19,45 @@ export function getAllFiles() {
 }
 export function getFile(filename) {
     return request({
-        url: 'http://localhost:8080' + "/files/"+filename,
+        url: "http://localhost:8080/files/"+filename,
         method: 'GET'
     });
 }
 
-export function getOrganization(username, organizationId) {
+export function getAllAboutUs() {
     return request({
-        url: API_BASE_URL + "/users/" + username + "/organization/" + organizationId,
+        url: API_BASE_URL + "/admin/get/aboutUs",
         method: 'GET'
     });
 }
-export function getAllOrganizations() {
+export function getDressCode() {
     return request({
-        url: API_BASE_URL + "/mainAdmin/allOrganisations",
+        url: API_BASE_URL + "/admin/get/dressCode",
         method: 'GET'
     });
 }
-export function getAllAcceptOrganization() {
+export function getInvitationText() {
     return request({
-        url: API_BASE_URL + "/mainAdmin/acceptOrganizationUpdate",
-        method: 'GET'
-    });
-}
-export function getAssociation(username, associationId) {
-    return request({
-        url: API_BASE_URL + "/users/" + username + "/association/" + associationId,
+        url: API_BASE_URL + "/admin/get/invitationText",
         method: 'GET'
     });
 }
 
-export function getHouse(username, houseId) {
+export function getPlace() {
     return request({
-        url: API_BASE_URL + "/users/" + username + "/house/" + houseId,
+        url: API_BASE_URL + "/admin/get/place",
         method: 'GET'
     });
 }
-
-export function getApartment(username, apartmentId) {
+export function getStory() {
     return request({
-        url: API_BASE_URL + "/users/" + username + "/apartment/" + apartmentId,
+        url: API_BASE_URL + "/admin/get/story",
         method: 'GET'
     });
 }
-
-export function getGuestRegister(uniqueKey) {
+export function getWeddingDate() {
     return request({
-        url: API_BASE_URL + "/associationAdmin/getGuestRegister/" + uniqueKey,
-        method: 'GET'
-    });
-}
-
-export function getUserCreatedOrganizationss(username) {
-    return request({
-        url: API_BASE_URL + "/users/" + username + "/organizations",
+        url: API_BASE_URL + "/admin/get/weddingDate",
         method: 'GET'
     });
 }

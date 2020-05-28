@@ -1,23 +1,66 @@
 import {API_BASE_URL} from "../constants";
 import {request, requestFile} from "./APIUtils";
 
-export function saveAssociation(saveAssociationRequest) {
+export function updateAboutUs(updateAboutUsRequest) {
     return request({
-        url: API_BASE_URL + "/associationAdmin/save/association",
+        url: API_BASE_URL + "/admin/update/aboutUs",
         method: 'POST',
-        body: JSON.stringify(saveAssociationRequest)
+        body: JSON.stringify(updateAboutUsRequest)
+    });
+
+}
+export function updateDressCode(updateDressCodeRequest) {
+    return request({
+        url: API_BASE_URL + "/admin/update/dressCode",
+        method: 'POST',
+        body: JSON.stringify(updateDressCodeRequest)
+    });
+
+}
+export function updateInvitationText(updateInvitationTextRequest) {
+    return request({
+        url: API_BASE_URL + "/admin/update/invitationText",
+        method: 'POST',
+        body: JSON.stringify(updateInvitationTextRequest)
+    });
+
+}
+export function updatePersonalInvitation(updatePersonalInvitationRequest) {
+    return request({
+        url: API_BASE_URL + "/admin/update/personalInvitation",
+        method: 'POST',
+        body: JSON.stringify(updatePersonalInvitationRequest)
     });
 
 }
 
-export function saveHouse(saveHouseRequest) {
+export function updatePlace(updatePlaceRequest) {
     return request({
-        url: API_BASE_URL + "/associationAdmin/save/house",
+        url: API_BASE_URL + "/admin/update/place",
         method: 'POST',
-        body: JSON.stringify(saveHouseRequest)
+        body: JSON.stringify(updatePlaceRequest)
     });
 
 }
+
+export function updateStory(updateStoryRequest) {
+    return request({
+        url: API_BASE_URL + "/admin/update/story",
+        method: 'POST',
+        body: JSON.stringify(updateStoryRequest)
+    });
+
+}
+export function updateDate(updateDateRequest) {
+    return request({
+        url: API_BASE_URL + "/admin/update/weddingDate",
+        method: 'POST',
+        body: JSON.stringify(updateDateRequest)
+    });
+
+}
+
+
 
 export function saveProtocol(file) {
     return requestFile({
@@ -27,95 +70,6 @@ export function saveProtocol(file) {
     });
 }
 
-export function saveContact(saveContactRequest) {
-    return request({
-        url: API_BASE_URL + "/associationAdmin/save/contact",
-        method: 'POST',
-        body: JSON.stringify(saveContactRequest)
-    });
-
-}
-export function saveNews(saveNewsRequest) {
-    return request({
-        url: API_BASE_URL + "/associationAdmin/save/news",
-        method: 'POST',
-        body: JSON.stringify(saveNewsRequest)
-    });
-
-}
-
-export function saveActivatedOrganization(updateOrganizationRequest) {
-    return request({
-        url: API_BASE_URL + "/associationAdmin/save/activatedOrganization",
-        method: 'POST',
-        body: JSON.stringify(updateOrganizationRequest)
-    });
-
-}
-export function saveNotActivatedOrganization(updateOrganizationRequest) {
-    return request({
-        url: API_BASE_URL + "/associationAdmin/save/notActivatedOrganization",
-        method: 'POST',
-        body: JSON.stringify(updateOrganizationRequest)
-    });
-}
-export function saveDeclinedOrganization(updateOrganizationRequest) {
-    return request({
-        url: API_BASE_URL + "/associationAdmin/save/declinedOrganization",
-        method: 'POST',
-        body: JSON.stringify(updateOrganizationRequest)
-    });
-}
-
-export function acceptOrganizationUpdate(acceptOrganizationUpdateRequest) {
-    return request({
-        url: API_BASE_URL + "/mainAdmin/acceptOrganizationUpdate",
-        method: 'POST',
-        body: JSON.stringify(acceptOrganizationUpdateRequest)
-    });
-}
-
-
-export function saveApartment(saveApartmentRequest) {
-    return request({
-        url: API_BASE_URL + "/associationAdmin/save/apartment",
-        method: 'POST',
-        body: JSON.stringify(saveApartmentRequest)
-    });
-
-}
-
-export function saveGuest(saveGuestRequest) {
-    return request({
-        url: API_BASE_URL + "/associationAdmin/save/guest",
-        method: 'POST',
-        body: JSON.stringify(saveGuestRequest)
-    });
-}
-
-export function saveSettings(saveSettingsRequest) {
-    return request({
-        url: API_BASE_URL + "/associationAdmin/save/settings",
-        method: 'POST',
-        body: JSON.stringify(saveSettingsRequest)
-    });
-}
-
-export function acceptOrganization(acceptOrganizationRequest) {
-    return request({
-        url: API_BASE_URL + "/mainAdmin/acceptOrganization",
-        method: 'POST',
-        body: JSON.stringify(acceptOrganizationRequest)
-    });
-}
-
-export function declineOrganization(declineOrganizationRequest) {
-    return request({
-        url: API_BASE_URL + "/mainAdmin/declineOrganization",
-        method: 'POST',
-        body: JSON.stringify(declineOrganizationRequest)
-    });
-}
 
 export function sendMailToGuest(sendMailRequest) {
     return request({
