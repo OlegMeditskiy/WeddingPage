@@ -6,6 +6,4 @@ import lombok.Getter;
 public class ProgramRequest {
 
     private Long id;
-
-    private String program;
 }

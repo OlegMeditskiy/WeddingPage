@@ -5,13 +5,12 @@ import {ACCESS_TOKEN} from '../constants';
 import Login from '../user/login/Login';
 import NotFound from '../common/NotFound';
 import LoadingIndicator from '../common/LoadingIndicator';
-import Admin from "../roles/Admin";
-import {Layout, notification} from 'antd';
 import PrivateRoute from "../common/PrivateRoute";
 import {getCurrentUser} from "../util/GetAPI";
-
-const {Content} = Layout;
-
+import AdminPage from "../AdminPage";
+import addNotification, {Notifications} from 'react-push-notification';
+import {Col, Container, Row} from "react-bootstrap";
+import MainPage from "../MainPage";
 
 class App extends Component {
     constructor(props) {
@@ -19,17 +18,17 @@ class App extends Component {
         this.state = {
             currentUser: null,
             isAuthenticated: null,
-            isLoading: false
+            isLoading: false,
+            successMessage: {
+                title: 'Успешно!',
+                theme: 'green',
+                closeButton: 'X',
+                duration: '4500'
+            },
         }
         this.handleLogout = this.handleLogout.bind(this);
         this.loadCurrentUser = this.loadCurrentUser.bind(this);
         this.handleLogin = this.handleLogin.bind(this);
-        // this.loadCurrentUser();
-        notification.config({
-            placement: 'topRight',
-            top: 70,
-            duration: 3,
-        });
     }
 
     loadCurrentUser() {
@@ -45,7 +44,8 @@ class App extends Component {
                 });
             }).catch(() => {
             this.setState({
-                isLoading: false
+                isLoading: false,
+                isAuthenticated: false,
             });
         });
 
@@ -55,50 +55,55 @@ class App extends Component {
         this.loadCurrentUser();
     }
 
-    handleLogout(redirectTo = "/login", notificationType = "success", description = "You're successfully logged out.") {
+    handleLogout() {
         localStorage.removeItem(ACCESS_TOKEN);
-
         this.setState({
             currentUser: null,
             isAuthenticated: false
         });
-
-        this.props.history.push(redirectTo);
-
-        notification[notificationType]({
-            message: 'Förenings App',
-            description: description,
+        addNotification({
+            message: 'Вы вышли из аккаунта',
+            ...this.state.successMessage
         });
+        this.props.history.push("/login");
     }
 
 
     handleLogin() {
-        notification.success({
-            message: 'Förenings App',
-            description: "You're successfully logged in.",
-        });
         this.loadCurrentUser();
-        this.props.history.push("/");
+        addNotification({
+            message: 'Вы успешно авторизовались',
+            ...this.state.successMessage
+        });
+        this.props.history.push("/admin");
     }
-
     render() {
         if (this.state.isLoading) {
             return <LoadingIndicator/>
         }
         return (
-                <Layout className="app-container">
-                    <Content className="app-content">
-                        <div className="container">
+                <div className="app-container">
+                    <div className="app-content">
+                        <Notifications position={"top-right"}/>
+                        {/*{(this.state.isAuthenticated!==null)? <a href="/admin">Панель админа</a>:null}*/}
                             <Switch>
                                 <Route path="/login"
                                        render={(props) => <Login onLogin={this.handleLogin} {...props} />}/>
-                                {(this.state.isAuthenticated!==null)?<PrivateRoute authenticated={this.state.isAuthenticated} path="/admin" handleLogout={this.handleLogout}
-                                                                                   currentUser={this.state.currentUser} component={Admin} />:null}
+                                       <Route exact path="/"
+                                              render={(props) => <MainPage isAuthenticated={this.state.isAuthenticated} {...props} />}/>
+                                {(this.state.isAuthenticated!==null)?<PrivateRoute authenticated={this.state.isAuthenticated} exact path="/admin" handleLogout={this.handleLogout}
+                                                                                   currentUser={this.state.currentUser} component={AdminPage} />:null}
                                 <Route component={NotFound}/>
                             </Switch>
-                        </div>
-                    </Content>
-                </Layout>
+                    </div>
+                    <div className={"footer"}>
+                            <Container>
+                                <Row className="justify-content-md-center">
+                                    <Col md={"auto"}>Олег лучший ©</Col>
+                                </Row>
+                            </Container>
+                    </div>
+                </div>
             );
 
     }

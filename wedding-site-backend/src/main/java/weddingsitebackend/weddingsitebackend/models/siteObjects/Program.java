@@ -20,6 +20,5 @@ public class Program {
     @JsonManagedReference
     List<ProgramsPart> programsParts;
 
-    private String program;
 
 }
