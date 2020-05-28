@@ -1,83 +1,82 @@
-// import React from 'react';
-// import './Login.css';
-// import {ACCESS_TOKEN} from '../../constants';
-// // import {Button, Form, Input, notification} from 'antd';
-// // import {LockOutlined, UserOutlined} from '@ant-design/icons';
-// import {login} from "../../util/AuthorizationAPI";
-//
-// const Login = (props) => {
-//     const onFinish = values => {
-//         const loginRequest = values;
-//         login(loginRequest)
-//             .then(response => {
-//                 localStorage.setItem(ACCESS_TOKEN, response.accessToken);
-//                 props.onLogin();
-//             }).catch(error => {
-//             if (error.status === 401) {
-//                 notification.error({
-//                     message: 'Föreningsdialog App',
-//                     description: 'Your Username or Password is incorrect. Please try again!'
-//                 });
-//             } else {
-//                 notification.error({
-//                     message: 'Föreningsdialog App',
-//                     description: error.message || 'Sorry! Something went wrong. Please try again!'
-//                 });
-//             }
-//         })
-//     };
-//
-//     return (
-//         <div className="login-container">
-//             <h1 className="page-title">Login</h1>
-//             <div className="login-content">
-//                 <Form
-//                     name="normal_login"
-//                     className="login-form"
-//                     initialValues={{
-//                         remember: true,
-//                     }}
-//                     onFinish={onFinish}
-//                 >
-//                     <Form.Item
-//                         name="username"
-//                         rules={[
-//                             {
-//                                 required: true,
-//                                 message: 'Please input your Username!',
-//                             },
-//                         ]}
-//                     >
-//                         <Input prefix={<UserOutlined className="site-form-item-icon"/>} placeholder="Username"/>
-//                     </Form.Item>
-//                     <Form.Item
-//                         name="password"
-//                         rules={[
-//                             {
-//                                 required: true,
-//                                 message: 'Please input your Password!',
-//                             },
-//                         ]}
-//                     >
-//                         <Input
-//                             prefix={<LockOutlined className="site-form-item-icon"/>}
-//                             type="password"
-//                             placeholder="Password"
-//                         />
-//                     </Form.Item>
-//                     <Form.Item>
-//                         <Button type="secondary" htmlType="submit" className="login-form-button">
-//                             Logga in
-//                         </Button>
-//                         Or <a href="/signup">registrera nu!</a>
-//                     </Form.Item>
-//                 </Form>
-//             </div>
-//         </div>
-//     );
-// };
-//
-//
-//
-//
-// export default Login;
+import React, {Component} from 'react';
+import './Login.css';
+import {ACCESS_TOKEN} from '../../constants';
+// import {Button, Form, Input, notification} from 'antd';
+// import {LockOutlined, UserOutlined} from '@ant-design/icons';
+import {login} from "../../util/AuthorizationAPI";
+import addNotification from "react-push-notification";
+import '../../Notidication.css'
+import {Button, Form} from "react-bootstrap";
+
+class Login extends Component{
+    constructor(props) {
+        super(props);
+        this.state={
+            warningMessage:{
+                title: 'Упс',
+                theme: 'red',
+                closeButton: 'X',
+                duration:'4500'
+            },
+            username:'',
+            password:''
+        }
+        this.handleChange=this.handleChange.bind(this);
+        this.handleSubmit=this.handleSubmit.bind(this);
+    }
+    handleChange(event) {
+        this.setState({[event.target.name]: event.target.value});
+    }
+    handleSubmit (event) {
+        event.preventDefault();
+        const loginRequest = {
+            username: this.state.username,
+            password: this.state.password
+        };
+        login(loginRequest)
+            .then(response => {
+                localStorage.setItem(ACCESS_TOKEN, response.accessToken);
+                this.props.onLogin();
+            }).catch(error => {
+            if (error.status === 401){
+                addNotification({
+                    message: 'Your Username or Password is incorrect. Please try again!',
+                    ...this.state.warningMessage
+                });
+            } else {
+                addNotification({
+                    message: error.message || 'Sorry! Something went wrong. Please try again!',
+                    ...this.state.warningMessage
+                });
+            }
+        })
+    };
+    render() {
+        return(
+            <div className="login-container">
+                <h1 className="page-title">Login</h1>
+                <div className="login-content">
+                    <Form
+                        name="normal_login"
+                        className="login-form"
+                        onSubmit={this.handleSubmit}>
+                        <Form.Group controlId="username">
+                            <Form.Label>Имя пользователя</Form.Label>
+                            <Form.Control type="text" onChange={this.handleChange} name={"username"} placeholder="Введите имя пользователя" />
+                        </Form.Group>
+                        <Form.Group controlId="formBasicPassword">
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control onChange={this.handleChange} name={"password"} type="password" placeholder="Password" />
+                        </Form.Group>
+                        <Button type="submit" className="login-form-button">
+                            Logga in
+                        </Button>
+                    </Form>
+                </div>
+            </div>
+        )
+    }
+
+}
+export default Login;
+

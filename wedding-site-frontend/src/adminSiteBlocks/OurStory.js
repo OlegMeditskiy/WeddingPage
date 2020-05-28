@@ -67,19 +67,9 @@ class OurStory extends Component{
                         <CKEditor
                             editor={ ClassicEditor }
                             data={this.state.ourStory}
-                            onInit={ editor => {
-                                // You can store the "editor" and use when it is needed.
-                                console.log( 'Editor is ready to use!', editor );
-                            } }
                             onChange={ ( event, editor ) => {
                                 const data = editor.getData();
                                 this.setState({ourStory: data});
-                            } }
-                            onBlur={ ( event, editor ) => {
-                                console.log( 'Blur.', editor );
-                            } }
-                            onFocus={ ( event, editor ) => {
-                                console.log( 'Focus.', editor );
                             } }
                         />
                     </Form.Group>

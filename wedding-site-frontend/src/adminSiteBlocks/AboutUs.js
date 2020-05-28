@@ -101,6 +101,7 @@ const columns = [ {
 }, {
     dataField: 'about',
     text: 'Об этом человеке',
+    style:{"word-wrap": "break-word"},
     editor: {
         type: Type.TEXTAREA,
         style:{'height':'500px'}

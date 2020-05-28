@@ -60,7 +60,6 @@ class Place extends Component{
 
     render() {
         const place = this.state.place
-        console.log(place)
         return(
             <div className={"adminSiteBlock"}>
             <Container>

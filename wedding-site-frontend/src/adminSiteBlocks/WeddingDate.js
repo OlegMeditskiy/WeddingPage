@@ -1,10 +1,10 @@
 import React, {Component} from "react";
 import {Button, Container, Form} from "react-bootstrap";
 import DateTimePicker from 'react-datetime-picker';
-import {updateDate, updateStory} from "../util/SaveAPI";
+import {updateDate} from "../util/SaveAPI";
 import {getWeddingDate} from "../util/GetAPI";
-import Moment from 'react-moment';
 import 'moment-timezone';
+
 class WeddingDate extends Component{
     constructor(props) {
         super(props);
@@ -53,7 +53,6 @@ class WeddingDate extends Component{
     }
 
     render() {
-        console.log(this.state.date)
         return(<div className={"adminSiteBlock"}>
             <Container>
                 <h1>Дата свадьбы</h1>

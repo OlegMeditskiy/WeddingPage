@@ -36,6 +36,11 @@
 }
 .button{
     border: 3px solid #ffea57!important;
+    color:#ffea57!important;
+}
+.btn.focus, .btn:focus {
+    outline: 0;
+    box-shadow: none!important;
 }
 .button>a{
     color:#ffea57!important;

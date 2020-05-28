@@ -19,7 +19,7 @@ export function getAllFiles() {
 }
 export function getFile(filename) {
     return request({
-        url: 'http://localhost:8080' + "/files/"+filename,
+        url: "http://localhost:8080/files/"+filename,
         method: 'GET'
     });
 }
