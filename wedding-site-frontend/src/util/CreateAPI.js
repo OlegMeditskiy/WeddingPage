@@ -8,3 +8,19 @@ export function sendMailToSupport(sendMailToSupportRequest) {
         body: JSON.stringify(sendMailToSupportRequest)
     });
 }
+export function createPersonalInvitation(createRequest) {
+    return request({
+        url: API_BASE_URL + "/admin/create/personalInvitation",
+        method: 'POST',
+        body: JSON.stringify(createRequest)
+    });
+}
+export function createProgramsPart(createProgramsPartRequest) {
+    console.log(createProgramsPartRequest)
+    return request({
+        url: API_BASE_URL + "/admin/create/programsPart",
+        method: 'POST',
+        body: JSON.stringify(createProgramsPartRequest)
+    });
+}
+

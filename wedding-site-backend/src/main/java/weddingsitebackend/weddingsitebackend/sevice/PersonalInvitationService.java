@@ -1,31 +1,20 @@
 package weddingsitebackend.weddingsitebackend.sevice;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
-import weddingsitebackend.weddingsitebackend.models.siteObjects.PersonalInvitation;
 import weddingsitebackend.weddingsitebackend.payload.common.ApiResponse;
-import weddingsitebackend.weddingsitebackend.payload.siteObjects.PersonalInvitationRequest;
-import weddingsitebackend.weddingsitebackend.repository.siteObjects.PersonalInvitationRepo;
+import weddingsitebackend.weddingsitebackend.payload.requests.PersonalInvitationRequest;
+import weddingsitebackend.weddingsitebackend.payload.responses.PersonalInvitationResponse;
 
-@Service
-public class PersonalInvitationService {
-    final
-    PersonalInvitationRepo personalInvitationRepo;
+import java.util.List;
 
-    public PersonalInvitationService(PersonalInvitationRepo personalInvitationRepo) {
-        this.personalInvitationRepo = personalInvitationRepo;
-    }
+public interface PersonalInvitationService {
+    ResponseEntity<?> update(PersonalInvitationRequest personalInvitationRequest);
 
-    public ResponseEntity<?> update(PersonalInvitationRequest personalInvitationRequest){
-        PersonalInvitation personalInvitation = personalInvitationRepo.getOne(personalInvitationRequest.getId());
-        personalInvitation.setNames(personalInvitationRequest.getNames());
-        personalInvitationRepo.save(personalInvitation);
-        return ResponseEntity.ok().body(new ApiResponse(true, "Персональное приглашение было обновлено"));
-    }
-    public ResponseEntity<?> create(PersonalInvitationRequest personalInvitationRequest){
-        PersonalInvitation personalInvitation = new PersonalInvitation();
-        personalInvitation.setNames(personalInvitationRequest.getNames());
-        personalInvitationRepo.save(personalInvitation);
-        return ResponseEntity.ok().body(new ApiResponse(true, "Персональное приглашение для "+personalInvitationRequest.getNames()+" было создано"));
-    }
+    ResponseEntity<?> create(PersonalInvitationRequest personalInvitationRequest);
+
+    List<ApiResponse> getApiResponses(String response1, String response2);
+
+    ResponseEntity<?> delete(PersonalInvitationRequest personalInvitationRequest);
+
+    List<PersonalInvitationResponse> get();
 }

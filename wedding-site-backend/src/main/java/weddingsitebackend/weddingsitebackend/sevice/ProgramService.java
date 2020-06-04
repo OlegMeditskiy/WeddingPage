@@ -1,16 +1,9 @@
 package weddingsitebackend.weddingsitebackend.sevice;
 
-import org.springframework.stereotype.Service;
-import weddingsitebackend.weddingsitebackend.repository.siteObjects.ProgramRepo;
+import weddingsitebackend.weddingsitebackend.payload.responses.ProgramResponse;
 
-@Service
-public class ProgramService {
-    final
-    ProgramRepo programRepo;
+public interface ProgramService {
 
-    public ProgramService(ProgramRepo programRepo) {
-        this.programRepo = programRepo;
-    }
-
+    ProgramResponse getProgram();
 
 }

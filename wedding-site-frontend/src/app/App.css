@@ -11,6 +11,10 @@
     background: #222;
     color: white;
 }
+.languageButton{
+    background-color: #222!important;
+    border-color: #222!important;
+}
 div.row {
     margin-right: 0px;
     margin-left: 0px
@@ -22,6 +26,15 @@ div.row {
 .adminButton{
     background-color: #343a40!important;
     border-color: #343a40!important;
+}
+.ck-editor__editable_inline {
+    max-height: 400px !important;
+}
+.react-time-picker{
+    /*display: -webkit-box!important;*/
+}
+.react-time-picker__wrapper{
+    /*width: 50px;*/
 }
 @media (min-width: 576px) {
     .modal-dialog {

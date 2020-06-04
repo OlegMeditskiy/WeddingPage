@@ -17,6 +17,6 @@ INSERT INTO program(id,program) VALUES ('1','Program text') ON CONFLICT (id) DO 
 
 INSERT INTO wedding_date(id,wedding_date) VALUES ('1','10-12-2006') ON CONFLICT (id) DO NOTHING;
 
-
+INSERT INTO program(id) VALUES ('1') ON CONFLICT (id) DO NOTHING;
 
 

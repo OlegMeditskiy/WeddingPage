@@ -1,10 +1,11 @@
-package weddingsitebackend.weddingsitebackend.payload.siteObjects;
+package weddingsitebackend.weddingsitebackend.payload.responses;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+
 @Setter
 @Getter
 @AllArgsConstructor

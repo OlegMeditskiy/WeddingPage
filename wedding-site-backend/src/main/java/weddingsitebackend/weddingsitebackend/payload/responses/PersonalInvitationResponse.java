@@ -1,4 +1,4 @@
-package weddingsitebackend.weddingsitebackend.payload.siteObjects;
+package weddingsitebackend.weddingsitebackend.payload.responses;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -6,8 +6,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
-@AllArgsConstructor
-public class PersonalnvitationResponse {
+public class PersonalInvitationResponse {
 
     private Long id;
 

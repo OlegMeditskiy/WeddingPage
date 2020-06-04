@@ -1,9 +1,8 @@
-import React, {Component, useState} from 'react';
+import React, {Component} from 'react';
 import './NotFound.css';
 import {Button, Col, Container, Form, Modal, Row} from "react-bootstrap";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faEnvelope, faHome} from "@fortawesome/free-solid-svg-icons";
-import {updatePlace} from "../util/SaveAPI";
 import {sendMailToSupport} from "../util/CreateAPI";
 
 class NotFound extends Component {

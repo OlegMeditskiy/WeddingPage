@@ -1,7 +1,10 @@
 .adminMenuNavbar{
     align-items: start!important;
 }
-
+.tabContent{
+    height: calc(100vh - 50px);
+    overflow: auto;
+}
 .nav-link{
    margin-left: 10px;
     margin-right: 10px;
@@ -15,3 +18,7 @@
         flex-flow: row nowrap;
         justify-content: flex-start;}
 }
+.copyIcon{
+    margin-left: 10px;
+}
+

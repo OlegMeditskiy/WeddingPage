@@ -16,7 +16,7 @@ public class Program {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToMany(mappedBy = "program",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "program", cascade = CascadeType.ALL)
     @JsonManagedReference
     List<ProgramsPart> programsParts;
 

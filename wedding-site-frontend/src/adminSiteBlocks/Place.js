@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {useEffect, useState} from "react";
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import {getPlace} from "../util/GetAPI";
 import {updatePlace} from "../util/SaveAPI";
@@ -6,67 +6,40 @@ import {Button, Container, Form} from "react-bootstrap";
 import './AdminSiteBlock.css';
 import Iframe from 'react-iframe'
 
-class Place extends Component{
-    constructor(props) {
-        super(props);
-        this.state={
-            isLoading:false,
-            place:''
-        }
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-    getPlace(){
+const Place =(props)=>{
+    const [place,setPlace]=useState('')
 
-        this.setState({
-            isLoading: true,
-        });
+    const getPlaceFromAPI=()=>{
         let promise = getPlace()
         promise
             .then(response => {
-                this.setState({
-                    isLoading: false,
-                    place:response.place
-                })
-
+               setPlace(response.place)
             }).catch(() => {
-            this.setState({
-                isLoading: false
-            })
         });
     }
-    componentDidMount() {
-        this.getPlace();
-    }
-
-    handleSubmit(event){
+    const handleSubmit=(event)=>{
         event.preventDefault()
         const updateRequest={
             id:1,
-            place:this.state.place
+            place:place
         }
         updatePlace(updateRequest)
             .then(() => {
-                this.getPlace()
-                this.props.successNotification('место проведения');
+                getPlaceFromAPI();
             }).catch((error) => {
-            this.props.failNotification();
         });
     }
-    handleChange(event) {
-        this.setState({[event.target.name]: event.target.value});
-    }
+    useEffect(()=>{
+        getPlaceFromAPI();
+    },[])
 
-
-    render() {
-        const place = this.state.place
-        return(
-            <div className={"adminSiteBlock"}>
+    return(
+        <div className={"adminSiteBlock"}>
             <Container>
                 <h1>Место проведения</h1>
-                <Form onSubmit={this.handleSubmit}>
+                <Form onSubmit={handleSubmit}>
                     <Form.Group controlId="place">
-                        <Form.Control onChange={this.handleChange} type="text" name={"place"} value={this.state.place} placeholder="Введите место проведения" />
+                        <Form.Control onChange={(event)=>setPlace(event.target.value)} type="text" name={"place"} value={place} placeholder="Введите место проведения" />
                     </Form.Group>
                     <Form.Group controlId={"googleMap"}>
                         <div id="map-container-google-1" className="z-depth-1-half map-container">
@@ -77,16 +50,14 @@ class Place extends Component{
                                 allowFullScreen/>
                         </div>
                     </Form.Group>
-
                     <Button variant="primary" type="submit">
                         Сохранить
                     </Button>
                 </Form>
 
             </Container>
-
         </div>)
-    }
 }
+
 
 export default Place;

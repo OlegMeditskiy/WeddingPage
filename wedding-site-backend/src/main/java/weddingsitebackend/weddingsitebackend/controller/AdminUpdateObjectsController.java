@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import weddingsitebackend.weddingsitebackend.payload.siteObjects.*;
+import weddingsitebackend.weddingsitebackend.payload.requests.*;
 import weddingsitebackend.weddingsitebackend.sevice.*;
 
 import javax.validation.Valid;
@@ -29,8 +29,9 @@ public class AdminUpdateObjectsController {
     final StoryService storyService;
 
     final WeddingDateService weddingDateService;
+    final ProgramsPartService programsPartService;
 
-    public AdminUpdateObjectsController(AboutUsService aboutUsService, DressCodeService dressCodeService, InvitaitionTextService invitaitionTextService, PersonalInvitationService personalInvitationService, PlaceService placeService, ProgramService programService, StoryService storyService, WeddingDateService weddingDateService) {
+    public AdminUpdateObjectsController(AboutUsService aboutUsService, DressCodeService dressCodeService, InvitaitionTextService invitaitionTextService, PersonalInvitationService personalInvitationService, PlaceService placeService, ProgramService programService, StoryService storyService, WeddingDateService weddingDateService, ProgramsPartService programsPartService) {
         this.aboutUsService = aboutUsService;
         this.dressCodeService = dressCodeService;
         this.invitaitionTextService = invitaitionTextService;
@@ -39,35 +40,46 @@ public class AdminUpdateObjectsController {
         this.programService = programService;
         this.storyService = storyService;
         this.weddingDateService = weddingDateService;
+        this.programsPartService = programsPartService;
     }
 
     @PostMapping("/aboutUs")
     public ResponseEntity<?> updateAboutUs(@Valid @RequestBody AboutUsRequest aboutUsRequest) {
         return aboutUsService.update(aboutUsRequest);
     }
+
     @PostMapping("/dressCode")
     public ResponseEntity<?> updateDressCode(@Valid @RequestBody DressCodeRequest dressCodeRequest) {
         return dressCodeService.update(dressCodeRequest);
     }
+
     @PostMapping("/invitationText")
     public ResponseEntity<?> updateInvitationText(@Valid @RequestBody InvitationTextRequest invitationTextRequest) {
         return invitaitionTextService.update(invitationTextRequest);
     }
+
     @PostMapping("/personalInvitation")
     public ResponseEntity<?> updatePersonalInvitation(@Valid @RequestBody PersonalInvitationRequest personalInvitationRequest) {
         return personalInvitationService.update(personalInvitationRequest);
     }
+
     @PostMapping("/place")
     public ResponseEntity<?> updatePlace(@Valid @RequestBody PlaceRequest placeRequest) {
         return placeService.update(placeRequest);
     }
-    
+
     @PostMapping("/story")
     public ResponseEntity<?> updateStory(@Valid @RequestBody StoryRequest storyRequest) {
         return storyService.update(storyRequest);
     }
+
     @PostMapping("/weddingDate")
     public ResponseEntity<?> updateStory(@Valid @RequestBody WeddingDateRequest weddingDateRequest) {
         return weddingDateService.update(weddingDateRequest);
+    }
+
+    @PostMapping("/programsPart")
+    public ResponseEntity<?> updateProgramsPart(@Valid @RequestBody ProgramsPartRequest programsPartRequest) {
+        return programsPartService.update(programsPartRequest);
     }
 }

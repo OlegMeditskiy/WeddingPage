@@ -1,4 +1,4 @@
-package weddingsitebackend.weddingsitebackend.payload.siteObjects;
+package weddingsitebackend.weddingsitebackend.payload.requests;
 
 import lombok.Getter;
 

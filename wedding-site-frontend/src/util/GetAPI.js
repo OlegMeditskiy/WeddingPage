@@ -61,11 +61,24 @@ export function getWeddingDate() {
         method: 'GET'
     });
 }
+export function getProgram() {
+    return request({
+        url: API_BASE_URL + "/admin/get/program",
+        method: 'GET'
+    });
+}
+export function getPersonalInvitations() {
+    return request({
+        url: API_BASE_URL + "/admin/get/personalInvitations",
+        method: 'GET'
+    });
+}
 
 export function getCurrentUser() {
     if (!localStorage.getItem(ACCESS_TOKEN)) {
         return Promise.reject("No access token set.");
     }
+
     return request({
         url: API_BASE_URL + "/user/me",
         method: 'GET'

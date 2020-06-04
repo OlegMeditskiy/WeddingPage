@@ -25,7 +25,7 @@ public class PersonalInvitation {
     private boolean needTransfer = false;
 
     @Type(type = "uuid-char")
-    private UUID uniqueKey= UUID.randomUUID();
+    private UUID uniqueKey = UUID.randomUUID();
 
 
 }

@@ -23,7 +23,6 @@ export function updateInvitationText(updateInvitationTextRequest) {
         method: 'POST',
         body: JSON.stringify(updateInvitationTextRequest)
     });
-
 }
 export function updatePersonalInvitation(updatePersonalInvitationRequest) {
     return request({
@@ -48,6 +47,14 @@ export function updateStory(updateStoryRequest) {
         url: API_BASE_URL + "/admin/update/story",
         method: 'POST',
         body: JSON.stringify(updateStoryRequest)
+    });
+
+}
+export function updateProgramsPart(updateProgramsPart) {
+    return request({
+        url: API_BASE_URL + "/admin/update/programsPart",
+        method: 'POST',
+        body: JSON.stringify(updateProgramsPart)
     });
 
 }

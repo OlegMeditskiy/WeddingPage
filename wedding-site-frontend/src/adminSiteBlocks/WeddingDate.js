@@ -1,76 +1,85 @@
-import React, {Component} from "react";
-import {Button, Container, Form} from "react-bootstrap";
-import DateTimePicker from 'react-datetime-picker';
+import React, {useEffect, useState} from "react";
+import {Button, Col, Row} from "react-bootstrap";
 import {updateDate} from "../util/SaveAPI";
 import {getWeddingDate} from "../util/GetAPI";
 import 'moment-timezone';
+import Flatpickr from "react-flatpickr";
+import {Russian} from "flatpickr/dist/l10n/ru";
+import {returnReadOrEdit} from "../constants";
 
-class WeddingDate extends Component{
-    constructor(props) {
-        super(props);
-        this.state={
-            isLoading:false,
-            date: '',
-        }
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
-    onChange = date => this.setState({ date })
-    handleSubmit(event){
+const WeddingDate =(props)=>{
+    const [date,setDate]=useState('')
+    const [show,setShow]=useState(true)
+    const handleSubmit=(event)=>{
         event.preventDefault()
         const updateRequest={
             id:1,
-            weddingDate:this.state.date
+            weddingDate:date
         }
         updateDate(updateRequest)
             .then(() => {
-                this.props.successNotification('дату свадьбы');
+                setShow(true);
             }).catch((error) => {
-            this.props.failNotification();
         });
     }
-    getDate(){
+    const getDateFromAPI=()=>{
         let promise = getWeddingDate()
-        this.setState({
-            isLoading: true
-        });
-
         promise
             .then(response => {
-                this.setState({
-                    date: new Date(response.weddingDate),
-                    isLoading: false,
-                })
-
+                const newDate = new Date(response.weddingDate)
+                setDate(newDate)
             }).catch(() => {
-            this.setState({
-                isLoading: false
-            })
         });
     }
-    componentDidMount() {
-        this.getDate();
+    useEffect(()=>{
+        getDateFromAPI();
+    },[])
+
+    const returnRead=()=>{
+
+        return(
+            <div>
+                <Row>
+                    <Col><Button onClick={()=>setShow(false)} variant="link" type="submit">
+                        Изменить
+                    </Button></Col>
+                </Row>
+                <Row>
+                    <Col>{date.toString()}</Col>
+                </Row>
+            </div>
+        )
+    }
+    const returnEdit=()=>{
+        return(
+            <div>
+                <Row>
+                    <Col>
+                        <Button onClick={(event)=>handleSubmit(event)} variant="link" type="submit">
+                            Сохранить
+                        </Button></Col>
+                </Row>
+                <Row>
+                    <Col><Flatpickr
+                        value={date}
+                        options={{
+                            locale:Russian,
+                            enableTime: true,
+                            minDate: "today",
+                            defaultDate: date,
+                            onChange: function(selectedDates, dateStr, instance) {
+                                setDate(selectedDates[0])
+                            },
+                        }} /></Col>
+                </Row>
+            </div>
+        )
     }
 
-    render() {
-        return(<div className={"adminSiteBlock"}>
-            <Container>
-                <h1>Дата свадьбы</h1>
-                <Form onSubmit={this.handleSubmit}>
-                    <Form.Group controlId="place">
-                <DateTimePicker
-                    locale={"ru"}
-                    onChange={this.onChange}
-                    value={this.state.date}
-                />
-                    </Form.Group>
-                    <Button variant="primary" type="submit">
-                        Сохранить
-                    </Button>
-                </Form>
-            </Container>
+    return(<div className={"adminSiteBlock"}>
+            <h1>Дата свадьбы</h1>
+            {returnReadOrEdit(returnRead,returnEdit,show)}
 
-        </div>)
-    }
+    </div>)
 }
 export default WeddingDate;

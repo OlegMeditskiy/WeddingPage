@@ -20,6 +20,6 @@ public class WeddingDate {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-//    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    //    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date weddingDate;
 }

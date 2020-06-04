@@ -1,6 +1,5 @@
 .adminSiteBlock{
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin:20px;
 }
 .map-container{
     overflow:hidden;
@@ -14,4 +13,7 @@
     height:100%;
     width:100%;
     position:absolute;
+}
+.react-time-picker__inputGroup{
+    min-width: auto;
 }

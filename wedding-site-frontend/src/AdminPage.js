@@ -10,21 +10,22 @@ import OurStory from "./adminSiteBlocks/OurStory";
 import Program from "./adminSiteBlocks/Program";
 import DressCode from "./adminSiteBlocks/DressCode";
 import Place from "./adminSiteBlocks/Place";
-import Invitation from "./adminSiteBlocks/Invitation";
+import Invitations from "./adminSiteBlocks/Invitations";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {
     faCalendarDay,
+    faClipboardList,
     faEnvelopeOpenText,
+    faHeading,
     faHome,
+    faLifeRing,
     faMapMarkerAlt,
+    faScroll,
     faSignOutAlt,
     faTshirt,
-    faClipboardList,
-    faUserFriends,
-    faScroll,
-    faHeading,
-    faLifeRing
+    faUserFriends
 } from "@fortawesome/free-solid-svg-icons";
+import {menuHeaders} from "./constants";
 
 
 class AdminPage extends Component{
@@ -36,16 +37,16 @@ constructor(props) {
         isAuthenticated: null,
         isLoading: false,
         warningMessage:{
-            title: 'Упс',
+            title: menuHeaders.errorMessage,
             theme: 'red',
             closeButton: 'X',
-            duration:'4500'
+            duration:'1500'
         },
         successMessage: {
-            title: 'Успешно!',
+            title: menuHeaders.successMessage,
             theme: 'green',
             closeButton: 'X',
-            duration: '4500'
+            duration: '1500'
         },
         key:'header'
     }
@@ -73,7 +74,7 @@ constructor(props) {
     };
     updateSuccess = (whatWasUpdated) => {
         addNotification({
-            message: 'Вы обновили '+whatWasUpdated,
+            message: whatWasUpdated,
             ...this.state.successMessage
         });
     };
@@ -83,7 +84,26 @@ constructor(props) {
             key:key
         })
     }
+    componentDidUpdate(prevProps, prevState, snapshot) {
 
+        if (this.props.language!==prevProps.language){
+
+            this.setState({
+                successMessage:{
+                    title: menuHeaders.successMessage,
+                    theme: 'green',
+                    closeButton: 'X',
+                    duration: '1500'},
+                warningMessage:{
+                    title: menuHeaders.errorMessage,
+                    theme: 'red',
+                    closeButton: 'X',
+                    duration:'1500'
+                },
+            })
+        }
+
+    }
 
 
     render() {
@@ -96,20 +116,19 @@ constructor(props) {
                                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                                 <Navbar.Collapse id="basic-navbar-nav">
                                     <Nav className="mr-auto flex-column ">
-                                        <Navbar.Brand href="/admin">Панель администратора</Navbar.Brand>
-                                        <Nav.Link eventKey={'home'} href={"/"}><FontAwesomeIcon icon={faHome} className={"icon"} />Домашняя страница</Nav.Link>
-                                        <Nav.Link eventKey={'header'} onClick={event=>this.handleSelect(event,'header')}><FontAwesomeIcon icon={faHeading} className={"icon"}/>Шапка</Nav.Link>
-                                        <Nav.Link eventKey={'weddingDate'} onClick={event=>this.handleSelect(event,'weddingDate')}><FontAwesomeIcon icon={faCalendarDay} className={"icon"}/>Дата свадьбы</Nav.Link>
-                                        <Nav.Link eventKey={'aboutUs'} onClick={event=>this.handleSelect(event,'aboutUs')}><FontAwesomeIcon icon={faUserFriends} className={"icon"}/>О нас</Nav.Link>
-                                        <Nav.Link eventKey={'ourStory'} onClick={event=>this.handleSelect(event,'ourStory')}><FontAwesomeIcon icon={faScroll} className={"icon"}/>Наша история</Nav.Link>
-                                        <Nav.Link eventKey={'program'} onClick={event=>this.handleSelect(event,'program')}><FontAwesomeIcon icon={faClipboardList} className={"icon"}/>Программа</Nav.Link>
-                                        <Nav.Link eventKey={'dressCode'} onClick={event=>this.handleSelect(event,'dressCode')}><FontAwesomeIcon icon={faTshirt} className={"icon"}/>Дресс-код</Nav.Link>
-                                        <Nav.Link eventKey={'place'} onClick={event=>this.handleSelect(event,'place')}><FontAwesomeIcon icon={faMapMarkerAlt} className={"icon"}/>Место проведения</Nav.Link>
-                                        <Nav.Link eventKey={'invitation'} onClick={event=>this.handleSelect(event,'invitation')}><FontAwesomeIcon icon={faEnvelopeOpenText} className={"icon"}/>Приглашения</Nav.Link>
+                                        <Navbar.Brand href="/admin">{menuHeaders.adminPanel}</Navbar.Brand>
+                                        <Nav.Link eventKey={'home'} href={"/"}><FontAwesomeIcon icon={faHome} className={"icon"} />{menuHeaders.homePage}</Nav.Link>
+                                        <Nav.Link eventKey={'header'} onClick={event=>this.handleSelect(event,'header')}><FontAwesomeIcon icon={faHeading} className={"icon"}/>{menuHeaders.header}</Nav.Link>
+                                        <Nav.Link eventKey={'weddingDate'} onClick={event=>this.handleSelect(event,'weddingDate')}><FontAwesomeIcon icon={faCalendarDay} className={"icon"}/>{menuHeaders.weddingDate}</Nav.Link>
+                                        <Nav.Link eventKey={'aboutUs'} onClick={event=>this.handleSelect(event,'aboutUs')}><FontAwesomeIcon icon={faUserFriends} className={"icon"}/>{menuHeaders.aboutUs}</Nav.Link>
+                                        <Nav.Link eventKey={'ourStory'} onClick={event=>this.handleSelect(event,'ourStory')}><FontAwesomeIcon icon={faScroll} className={"icon"}/>{menuHeaders.ourStory}</Nav.Link>
+                                        <Nav.Link eventKey={'program'} onClick={event=>this.handleSelect(event,'program')}><FontAwesomeIcon icon={faClipboardList} className={"icon"}/>{menuHeaders.program}</Nav.Link>
+                                        <Nav.Link eventKey={'dressCode'} onClick={event=>this.handleSelect(event,'dressCode')}><FontAwesomeIcon icon={faTshirt} className={"icon"}/>{menuHeaders.dressCode}</Nav.Link>
+                                        <Nav.Link eventKey={'place'} onClick={event=>this.handleSelect(event,'place')}><FontAwesomeIcon icon={faMapMarkerAlt} className={"icon"}/>{menuHeaders.place}</Nav.Link>
+                                        <Nav.Link eventKey={'invitation'} onClick={event=>this.handleSelect(event,'invitation')}><FontAwesomeIcon icon={faEnvelopeOpenText} className={"icon"}/>{menuHeaders.invitations}</Nav.Link>
                                         <hr/>
-
-                                        <Nav.Link onClick={this.handleShow}><FontAwesomeIcon icon={faLifeRing} className={"icon"}/>Техническая поддержка</Nav.Link>
-                                        <Nav.Link onClick={this.props.handleLogout}><FontAwesomeIcon icon={faSignOutAlt} className={"icon"}/>Выйти</Nav.Link>
+                                        <Nav.Link onClick={this.handleShow}><FontAwesomeIcon icon={faLifeRing} className={"icon"}/>{menuHeaders.support}</Nav.Link>
+                                        <Nav.Link onClick={this.props.handleLogout}><FontAwesomeIcon icon={faSignOutAlt} className={"icon"}/>{menuHeaders.exit}</Nav.Link>
                                     </Nav>
 
                                 </Navbar.Collapse>
@@ -130,7 +149,7 @@ constructor(props) {
                                     <OurStory failNotification={this.updateFail} successNotification={this.updateSuccess}/>
                                 </Tab.Pane>
                                 <Tab.Pane eventKey="program">
-                                    <Program failNotification={this.updateFail} successNotification={this.updateSuccess}/>
+                                    <Program {...this.props} failNotification={this.updateFail} successNotification={this.updateSuccess}/>
                                 </Tab.Pane>
                                 <Tab.Pane eventKey="dressCode">
                                     <DressCode failNotification={this.updateFail} successNotification={this.updateSuccess}/>
@@ -139,7 +158,7 @@ constructor(props) {
                                     <Place failNotification={this.updateFail} successNotification={this.updateSuccess}/>
                                 </Tab.Pane>
                                 <Tab.Pane eventKey="invitation">
-                                    <Invitation failNotification={this.updateFail} successNotification={this.updateSuccess}/>
+                                    <Invitations failNotification={this.updateFail} successNotification={this.updateSuccess}/>
                                 </Tab.Pane>
                             </Tab.Content>
                         </Col>
