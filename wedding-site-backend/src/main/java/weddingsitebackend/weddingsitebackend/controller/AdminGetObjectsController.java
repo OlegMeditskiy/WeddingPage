@@ -1,11 +1,11 @@
 package weddingsitebackend.weddingsitebackend.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import weddingsitebackend.weddingsitebackend.payload.requests.PersonalInvitationRequest;
 import weddingsitebackend.weddingsitebackend.payload.responses.*;
-import weddingsitebackend.weddingsitebackend.sevice.*;
+import weddingsitebackend.weddingsitebackend.service.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -80,5 +80,10 @@ public class AdminGetObjectsController {
     @GetMapping(value = "/personalInvitations")
     public List<PersonalInvitationResponse> getPersonalInvitations() {
         return personalInvitationService.get();
+    }
+
+    @GetMapping(value = "/personalInvitation/{key}")
+    public PersonalInvitationResponse getPersonalInvitation(@PathVariable String key) {
+        return personalInvitationService.getPersonal(key);
     }
 }

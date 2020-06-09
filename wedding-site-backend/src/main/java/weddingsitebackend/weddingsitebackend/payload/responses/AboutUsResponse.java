@@ -14,6 +14,8 @@ public class AboutUsResponse {
 
     private String about;
 
+    private String photoName;
+
     public AboutUsResponse() {
     }
 }

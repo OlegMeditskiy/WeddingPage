@@ -1,8 +1,8 @@
 package weddingsitebackend.weddingsitebackend.payload.responses;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import weddingsitebackend.weddingsitebackend.models.siteObjects.InvitationStatus;
 
 @Setter
 @Getter
@@ -14,8 +14,8 @@ public class PersonalInvitationResponse {
 
     private String invitationLink;
 
-    private boolean accepted = false;
+    private InvitationStatus status;
 
-    private boolean needTransfer = false;
+    private boolean needTransfer;
 
 }

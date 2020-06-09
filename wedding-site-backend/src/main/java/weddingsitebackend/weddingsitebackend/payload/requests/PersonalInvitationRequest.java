@@ -9,4 +9,8 @@ public class PersonalInvitationRequest {
 
     private String names;
 
+    private String key;
+
+    private boolean needTransfer;
+
 }

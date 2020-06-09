@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import weddingsitebackend.weddingsitebackend.payload.requests.PersonalInvitationRequest;
 import weddingsitebackend.weddingsitebackend.payload.requests.ProgramsPartRequest;
-import weddingsitebackend.weddingsitebackend.sevice.PersonalInvitationService;
-import weddingsitebackend.weddingsitebackend.sevice.ProgramsPartService;
+import weddingsitebackend.weddingsitebackend.service.PersonalInvitationService;
+import weddingsitebackend.weddingsitebackend.service.ProgramsPartService;
 
 import javax.validation.Valid;
 

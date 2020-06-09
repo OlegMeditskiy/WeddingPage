@@ -1,14 +1,16 @@
 package weddingsitebackend.weddingsitebackend.controller;
 
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import weddingsitebackend.weddingsitebackend.payload.requests.*;
-import weddingsitebackend.weddingsitebackend.sevice.*;
+import weddingsitebackend.weddingsitebackend.service.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/api/admin/update")
@@ -81,5 +83,18 @@ public class AdminUpdateObjectsController {
     @PostMapping("/programsPart")
     public ResponseEntity<?> updateProgramsPart(@Valid @RequestBody ProgramsPartRequest programsPartRequest) {
         return programsPartService.update(programsPartRequest);
+    }
+    @PostMapping(value = "/photo", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<?> uploadPhoto(@RequestPart("file") @Valid @NotNull @NotBlank @RequestParam MultipartFile file,
+                                              @RequestPart ("properties") @Valid AboutUsRequest aboutUsRequest) throws IOException {
+        return aboutUsService.photoUpload(file,aboutUsRequest);
+    }
+    @PostMapping(value = "/photoFemale", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<?> uploadDressFemale(@RequestParam MultipartFile file) throws IOException {
+        return dressCodeService.photoUploadDressFemale(file);
+    }
+    @PostMapping(value = "/photoMale", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<?> uploadDressMale(@RequestParam MultipartFile file) throws IOException {
+        return dressCodeService.photoUploadDressMale(file);
     }
 }

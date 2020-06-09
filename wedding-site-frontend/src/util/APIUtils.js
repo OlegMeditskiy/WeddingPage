@@ -1,4 +1,4 @@
-import {ACCESS_TOKEN, API_BASE_URL} from '../constants';
+import {ACCESS_TOKEN} from '../constants';
 
 export const request = (options) => {
     const headers = new Headers({
@@ -45,39 +45,6 @@ export const requestFile = (options) => {
         );
 };
 
-export function createNewDocument(file) {
-    return requestFile({
-        url: API_BASE_URL + "/associationAdmin/create/document",
-        method: 'POST',
-        body: file
-    })
-
-}
-export function GDPRUpload(file) {
-    return requestFile({
-        url: API_BASE_URL + "/mainAdmin/uploadGDPR",
-        method: 'POST',
-        body: file
-    })
-
-}
-
-export function logoUpload(file) {
-    return requestFile({
-        url: API_BASE_URL + "/associationAdmin/logoUpload",
-        method: 'POST',
-        body: file
-    })
-
-}
-export function VillkorUpload(file) {
-    return requestFile({
-        url: API_BASE_URL + "/mainAdmin/uploadVillkor",
-        method: 'POST',
-        body: file
-    })
-
-}
 
 
 

@@ -11,4 +11,9 @@ public class DressCodeResponse {
     private Long id;
 
     private String text;
+
+    private String dressMale;
+
+    private String dressFemale;
+
 }

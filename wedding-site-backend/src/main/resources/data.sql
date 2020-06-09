@@ -9,7 +9,7 @@ INSERT INTO about_us(id,name,about) VALUES ('1','Name 1','About') ON CONFLICT (i
 
 INSERT INTO about_us(id,name,about) VALUES ('2','Name 2','About') ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO invitation_text(id,invitation_text) VALUES ('1','Тext of invitation') ON CONFLICT (id) DO NOTHING;
+INSERT INTO invitation_text(id,invitation_text,final_date) VALUES ('1','Тext of invitation','10-12-2006') ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO place(id,place) VALUES ('1','Place') ON CONFLICT (id) DO NOTHING;
 

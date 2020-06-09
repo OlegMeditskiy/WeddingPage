@@ -1,16 +1,15 @@
 package weddingsitebackend.weddingsitebackend.controller;
 
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import weddingsitebackend.weddingsitebackend.payload.common.LoginRequest;
 import weddingsitebackend.weddingsitebackend.payload.common.SignUpRequest;
-import weddingsitebackend.weddingsitebackend.sevice.AuthService;
+import weddingsitebackend.weddingsitebackend.service.AuthService;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 @RestController
 @RequestMapping("/api/auth")

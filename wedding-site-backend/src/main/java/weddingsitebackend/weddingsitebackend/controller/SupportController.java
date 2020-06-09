@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import weddingsitebackend.weddingsitebackend.payload.requests.SupportRequest;
-import weddingsitebackend.weddingsitebackend.sevice.SupportMailService;
+import weddingsitebackend.weddingsitebackend.service.SupportMailService;
 
 import javax.validation.Valid;
 

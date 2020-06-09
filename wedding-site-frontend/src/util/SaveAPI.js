@@ -1,5 +1,5 @@
 import {API_BASE_URL} from "../constants";
-import {request, requestFile} from "./APIUtils";
+import {request} from "./APIUtils";
 
 export function updateAboutUs(updateAboutUsRequest) {
     return request({
@@ -14,6 +14,22 @@ export function updateDressCode(updateDressCodeRequest) {
         url: API_BASE_URL + "/admin/update/dressCode",
         method: 'POST',
         body: JSON.stringify(updateDressCodeRequest)
+    });
+
+}
+export function accept(acceptRequest) {
+    return request({
+        url: API_BASE_URL + "/invitation/accept",
+        method: 'POST',
+        body: JSON.stringify(acceptRequest)
+    });
+
+}
+export function decline(declineRequest) {
+    return request({
+        url: API_BASE_URL + "/invitation/decline",
+        method: 'POST',
+        body: JSON.stringify(declineRequest)
     });
 
 }
@@ -67,21 +83,3 @@ export function updateDate(updateDateRequest) {
 
 }
 
-
-
-export function saveProtocol(file) {
-    return requestFile({
-        url: API_BASE_URL + "/associationAdmin/save/protocol",
-        method: 'POST',
-        body: file
-    });
-}
-
-
-export function sendMailToGuest(sendMailRequest) {
-    return request({
-        url:API_BASE_URL+"/associationAdmin/save/sendMailToGuest",
-        method:'POST',
-        body: JSON.stringify(sendMailRequest)
-    })
-}

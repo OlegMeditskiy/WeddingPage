@@ -3,7 +3,6 @@ package weddingsitebackend.weddingsitebackend.models.siteObjects;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.List;
