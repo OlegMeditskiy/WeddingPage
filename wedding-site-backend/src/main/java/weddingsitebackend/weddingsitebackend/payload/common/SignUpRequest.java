@@ -17,7 +17,6 @@ public class SignUpRequest {
     private String password;
 
 
-
     public String getUsername() {
         return username;
     }

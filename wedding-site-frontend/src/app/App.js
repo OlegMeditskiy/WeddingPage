@@ -1,16 +1,17 @@
 import React, {Component} from 'react';
 import './App.css';
 import {Route, Switch, withRouter} from 'react-router-dom';
-import {ACCESS_TOKEN} from '../constants';
+import FlagIcon, {ACCESS_TOKEN, LANGUAGE, translation} from '../constants';
 import Login from '../user/login/Login';
 import NotFound from '../common/NotFound';
 import LoadingIndicator from '../common/LoadingIndicator';
 import PrivateRoute from "../common/PrivateRoute";
 import {getCurrentUser} from "../util/GetAPI";
-import AdminPage from "../AdminPage";
+import AdminPage from "../Admin/AdminPage";
 import addNotification, {Notifications} from 'react-push-notification';
-import {Col, Container, Row} from "react-bootstrap";
-import MainPage from "../MainPage";
+import {Button, Col, Container, Row} from "react-bootstrap";
+import MainPage from "../MainPage/MainPage";
+import InvitationForPerson from "../MainPage/InvitationForPerson";
 
 class App extends Component {
     constructor(props) {
@@ -19,16 +20,48 @@ class App extends Component {
             currentUser: null,
             isAuthenticated: null,
             isLoading: false,
+            language: 'en',
             successMessage: {
                 title: 'Успешно!',
                 theme: 'green',
                 closeButton: 'X',
-                duration: '4500'
+                duration: '4500',
             },
         }
         this.handleLogout = this.handleLogout.bind(this);
         this.loadCurrentUser = this.loadCurrentUser.bind(this);
         this.handleLogin = this.handleLogin.bind(this);
+        this._onSetLanguageToEnglish=this._onSetLanguageToEnglish.bind(this);
+        this._onSetLanguageToRussian=this._onSetLanguageToRussian.bind(this);
+        this._onSetLanguageToSwedish=this._onSetLanguageToSwedish.bind(this);
+        this.loadLanguage=this.loadLanguage.bind(this);
+
+    }
+    _onSetLanguageToRussian(event) {
+        event.preventDefault();
+        localStorage.setItem(LANGUAGE,'ru')
+        this.loadLanguage();
+    }
+    _onSetLanguageToEnglish(event) {
+        event.preventDefault();
+        localStorage.setItem(LANGUAGE,'en')
+        this.loadLanguage();
+    }
+    _onSetLanguageToSwedish(event) {
+        event.preventDefault();
+        localStorage.setItem(LANGUAGE,'sv')
+        this.loadLanguage();
+    }
+    loadLanguage(){
+        if (!localStorage.getItem(LANGUAGE)) {
+            localStorage.setItem(LANGUAGE,"en")
+        }
+        else {
+            this.setState({
+                language: localStorage.getItem(LANGUAGE)
+            })
+        }
+
     }
 
     loadCurrentUser() {
@@ -52,6 +85,7 @@ class App extends Component {
     }
 
     componentDidMount() {
+        this.loadLanguage();
         this.loadCurrentUser();
     }
 
@@ -77,7 +111,9 @@ class App extends Component {
         });
         this.props.history.push("/admin");
     }
+
     render() {
+        translation.setLanguage(this.state.language);
         if (this.state.isLoading) {
             return <LoadingIndicator/>
         }
@@ -85,21 +121,26 @@ class App extends Component {
                 <div className="app-container">
                     <div className="app-content">
                         <Notifications position={"top-right"}/>
-                        {/*{(this.state.isAuthenticated!==null)? <a href="/admin">Панель админа</a>:null}*/}
                             <Switch>
                                 <Route path="/login"
                                        render={(props) => <Login onLogin={this.handleLogin} {...props} />}/>
                                        <Route exact path="/"
-                                              render={(props) => <MainPage isAuthenticated={this.state.isAuthenticated} {...props} />}/>
-                                {(this.state.isAuthenticated!==null)?<PrivateRoute authenticated={this.state.isAuthenticated} exact path="/admin" handleLogout={this.handleLogout}
-                                                                                   currentUser={this.state.currentUser} component={AdminPage} />:null}
+                                              render={(props) => <MainPage />}/>
+                                <Route path="/invitation/:invitationKey"
+                                       render={(props) => <InvitationForPerson {...props}/>}/>
+                                {(this.state.isAuthenticated!==null)?<PrivateRoute authenticated={this.state.isAuthenticated} path="/admin" handleLogout={this.handleLogout}
+                                                                                   currentUser={this.state.currentUser} language={this.state.language}  component={AdminPage} />:null}
                                 <Route component={NotFound}/>
                             </Switch>
                     </div>
                     <div className={"footer"}>
                             <Container>
                                 <Row className="justify-content-md-center">
-                                    <Col md={"auto"}>Олег лучший ©</Col>
+                                    <Col md={"auto"}>
+                                        <Button onClick={this._onSetLanguageToRussian} className={"languageButton"} type={"submit"}><FlagIcon code={"ru"} size={"2x"} /></Button>
+                                            <Button onClick={this._onSetLanguageToEnglish} className={"languageButton"} type={"submit"}><FlagIcon code={"gb"} size={"2x"} /></Button>
+                                        <Button onClick={this._onSetLanguageToSwedish} className={"languageButton"} type={"submit"}><FlagIcon code={"se"} size={"2x"} /></Button>
+                                        </Col>
                                 </Row>
                             </Container>
                     </div>

@@ -20,7 +20,10 @@ public class ProgramsPart {
     private String programsText;
 
     @ManyToOne
-    @JoinTable(name = "program_programs_parts", joinColumns = @JoinColumn(name = "programs_part_id"), inverseJoinColumns = @JoinColumn(name = "program_id"))
+    @JoinTable(name = "program_parts", joinColumns = @JoinColumn(name = "programs_part_id"), inverseJoinColumns = @JoinColumn(name = "program_id"))
     @JsonBackReference
     Program program;
+
+    String startTime;
+    String finishTime;
 }
