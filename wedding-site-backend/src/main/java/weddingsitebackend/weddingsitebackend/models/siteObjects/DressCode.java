@@ -14,6 +14,10 @@ public class DressCode {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    private String dressMale;
+
+    private String dressFemale;
+
     @Lob
     @Type(type = "org.hibernate.type.TextType")
     private String text;

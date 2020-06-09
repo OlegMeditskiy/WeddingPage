@@ -3,7 +3,6 @@ package weddingsitebackend.weddingsitebackend.models.siteObjects;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,6 +19,6 @@ public class WeddingDate {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-//    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    //    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date weddingDate;
 }

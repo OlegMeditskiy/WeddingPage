@@ -1,5 +1,5 @@
 import {API_BASE_URL} from "../constants";
-import {request, requestFile} from "./APIUtils";
+import {request} from "./APIUtils";
 
 export function updateAboutUs(updateAboutUsRequest) {
     return request({
@@ -17,13 +17,28 @@ export function updateDressCode(updateDressCodeRequest) {
     });
 
 }
+export function accept(acceptRequest) {
+    return request({
+        url: API_BASE_URL + "/invitation/accept",
+        method: 'POST',
+        body: JSON.stringify(acceptRequest)
+    });
+
+}
+export function decline(declineRequest) {
+    return request({
+        url: API_BASE_URL + "/invitation/decline",
+        method: 'POST',
+        body: JSON.stringify(declineRequest)
+    });
+
+}
 export function updateInvitationText(updateInvitationTextRequest) {
     return request({
         url: API_BASE_URL + "/admin/update/invitationText",
         method: 'POST',
         body: JSON.stringify(updateInvitationTextRequest)
     });
-
 }
 export function updatePersonalInvitation(updatePersonalInvitationRequest) {
     return request({
@@ -51,6 +66,14 @@ export function updateStory(updateStoryRequest) {
     });
 
 }
+export function updateProgramsPart(updateProgramsPart) {
+    return request({
+        url: API_BASE_URL + "/admin/update/programsPart",
+        method: 'POST',
+        body: JSON.stringify(updateProgramsPart)
+    });
+
+}
 export function updateDate(updateDateRequest) {
     return request({
         url: API_BASE_URL + "/admin/update/weddingDate",
@@ -60,21 +83,3 @@ export function updateDate(updateDateRequest) {
 
 }
 
-
-
-export function saveProtocol(file) {
-    return requestFile({
-        url: API_BASE_URL + "/associationAdmin/save/protocol",
-        method: 'POST',
-        body: file
-    });
-}
-
-
-export function sendMailToGuest(sendMailRequest) {
-    return request({
-        url:API_BASE_URL+"/associationAdmin/save/sendMailToGuest",
-        method:'POST',
-        body: JSON.stringify(sendMailRequest)
-    })
-}

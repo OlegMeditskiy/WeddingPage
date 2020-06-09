@@ -19,13 +19,12 @@ public class PersonalInvitation {
 
     private String invitationLink;
 
-    @Column(columnDefinition = "boolean default false", nullable = false)
-    private boolean accepted = false;
+    private InvitationStatus status = InvitationStatus.NOT_ANSWERED;
 
     private boolean needTransfer = false;
 
     @Type(type = "uuid-char")
-    private UUID uniqueKey= UUID.randomUUID();
+    private UUID uniqueKey = UUID.randomUUID();
 
 
 }

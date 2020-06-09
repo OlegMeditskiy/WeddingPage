@@ -16,6 +16,8 @@ public class AboutUs {
 
     private String name;
 
+    private String photoName;
+
     @Lob
     @Type(type = "org.hibernate.type.TextType")
     private String about;

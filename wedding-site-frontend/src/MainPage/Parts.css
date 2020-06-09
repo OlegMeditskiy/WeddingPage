@@ -1,0 +1,167 @@
+.mainPageBlock{
+    padding-top: 70px;
+    padding-bottom: 70px;
+    padding-left: 15px;
+}
+.bandMainPage {
+    position: absolute;
+    left: calc(50% - 88px);
+    padding: 40px;
+}
+
+@media (max-width: 768px) {
+
+    #logo{
+        display: none;
+    }
+    .header {
+        margin: -7% -15% -17% -57%;
+        width: 200%;
+    }
+    .acceptButtons{
+        margin-bottom: 20px;
+    }
+}
+
+@media (min-width: 769px) {
+    .header{
+        margin: -2% -15% -11% -22%;
+        width: 130%;
+    }
+}
+
+
+
+
+.navbar-light .navbar-nav .nav-link{
+    color: black!important;
+}
+.whiteNavbar{
+    background-color: 	#7e695b;
+}
+.headline{
+    position: relative;
+}
+.odBlock{
+    background-color: #4e4038 ;
+    color: beige;
+}
+.evenBlock{
+    background-color: #2a221f;
+    color: beige;
+}
+.nav-link{
+    font-family: "DejaVu Serif";
+    font-size: 18px;
+}
+.headline:after
+{
+    content:' ';
+    position: absolute;
+    top:100%;
+    left:50%;
+    width: 100%;
+    border:2px solid #d0d0d0;
+    border-radius:4px;
+    box-shadow:inset 0 1px 1px rgba(0, 0, 0, .05);
+    transform:translateX(-50%);}
+
+.timerBlock{
+    padding-bottom: 10px;
+    background-color: #0000004f;
+    width: 100%;
+    position: absolute;
+    bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    line-height: 2;
+}
+.names {
+    text-align: center;
+    width: 100%;
+    font-family: "DejaVu Serif";
+    font-size: 50px;
+    color: white;
+}
+.weddingDate {
+    text-align: center;
+    width: 100%;
+    font-family: "DejaVu Serif";
+    font-size: 40px;
+    color: white;
+}
+.beforeWedding{
+    font-family: "DejaVu Serif";
+    color: white;
+    text-align: center;
+    width: 100%;
+    font-size: 35px;
+}
+.timer{
+    font-family: "DejaVu Serif";
+    color: white;
+    text-align: center;
+    width: 100%;
+    font-size: 35px;
+}
+@media (min-width: 576px){
+    .timerBlock {
+        border-style: solid;
+        border-width: 2px;
+        border-color: white;
+        width: 430px;
+    }
+}
+
+.countdown-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.countdown-item {
+    color: #111;
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    line-height: 30px;
+    margin: 10px;
+    padding-top: 10px;
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+.countdown-item span {
+    color: #333;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.countdown-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 100px;
+}
+
+.answer{
+    background-color: #4e4038;
+    border: 1px solid black;
+    padding: 20px;
+    color: beige;
+}
+.acceptButton{
+    background: #2a221f!important;
+    border-color: #2a221f!important;
+}
+
+
+
