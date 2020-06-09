@@ -118,7 +118,7 @@ constructor(props) {
                                     <Nav className="mr-auto flex-column ">
                                         <Navbar.Brand href="/admin">{translation.adminPanel}</Navbar.Brand>
                                         <Nav.Link eventKey={'home'} href={"/"}><FontAwesomeIcon icon={faHome} className={"icon"} />{translation.homePage}</Nav.Link>
-                                        <Nav.Link eventKey={'header'} onClick={event=>this.handleSelect(event,'header')}><FontAwesomeIcon icon={faHeading} className={"icon"}/>{translation.header}</Nav.Link>
+                                        {/*<Nav.Link eventKey={'header'} onClick={event=>this.handleSelect(event,'header')}><FontAwesomeIcon icon={faHeading} className={"icon"}/>{translation.header}</Nav.Link>*/}
                                         <Nav.Link eventKey={'weddingDate'} onClick={event=>this.handleSelect(event,'weddingDate')}><FontAwesomeIcon icon={faCalendarDay} className={"icon"}/>{translation.weddingDate}</Nav.Link>
                                         <Nav.Link eventKey={'aboutUs'} onClick={event=>this.handleSelect(event,'aboutUs')}><FontAwesomeIcon icon={faUserFriends} className={"icon"}/>{translation.aboutUs}</Nav.Link>
                                         <Nav.Link eventKey={'ourStory'} onClick={event=>this.handleSelect(event,'ourStory')}><FontAwesomeIcon icon={faScroll} className={"icon"}/>{translation.ourStory}</Nav.Link>
@@ -136,9 +136,9 @@ constructor(props) {
                         </Col>
                         <Col className={"tabContent"}>
                             <Tab.Content>
-                                <Tab.Pane eventKey="header">
-                                    <Header/>
-                                </Tab.Pane>
+                                {/*<Tab.Pane eventKey="header">*/}
+                                {/*    <Header/>*/}
+                                {/*</Tab.Pane>*/}
                                 <Tab.Pane eventKey="weddingDate">
                                     <WeddingDate language={this.props.language} failNotification={this.updateFail} successNotification={this.updateSuccess} />
                                 </Tab.Pane>
